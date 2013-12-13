@@ -1,8 +1,6 @@
 module UsersHelper
 
 	def require_manager!
-		#redirect_to users_url
-
 		if current_user.id == params[:id].to_i || current_user.staff_members.pluck(:id).include?(params[:id])
 			# do your business
 		else
@@ -10,8 +8,14 @@ module UsersHelper
 		end
 	end
 
-	def is_my_manager?
-		render :json => "Not allowed to see this info"
+	def allowed_to_view?
+		if current_user.id == params[:id].to_i || current_user.manager_id == params[:id].to_i
+			# allow to view
+		elsif current_user.type == "Manager" && current_user.staff_members.pluck(:id).include?(params[:id]) 
+			# allow to view
+		else
+			render :json => "Not allowed to view"
+		end
 	end
 
 

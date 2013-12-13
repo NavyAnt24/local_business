@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_filter :require_current_user!, :only => [:show]
 	before_filter :require_no_current_user!, :only => [:create, :new]
 	before_filter :require_manager!, :only => [:edit]
+	before_filter :allowed_to_view?, :only => [:show]
 
 	def index
 		@users = User.all

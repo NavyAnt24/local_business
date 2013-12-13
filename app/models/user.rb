@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :name, :email, :phone_number, :type
+	attr_accessible :name, :email, :phone_number, :type, :manager_id
 	validates :name, :email, :phone_number, :type, :presence => true
 
 	validates :email, :phone_number, :uniqueness => true

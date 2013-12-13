@@ -1,0 +1,10 @@
+<p>Hello there!</p>
+
+<h1><%= @user.email %></h1>
+
+<h3>User's name: <%= @user.name %></h3>
+<h3>User's phone number: <%= @user.phone_number %></h3>
+<h3>User's type: <%= @user.type %></h3>
+
+<%= link_to "Back", users_url %> | 
+<%= link_to "Edit user", edit_user_url(@user) %>
